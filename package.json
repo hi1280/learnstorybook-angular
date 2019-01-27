@@ -1,14 +1,14 @@
 {
-  "name": "test-angular-storybook",
+  "name": "taskbox",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "cross-env NODE_ENV=test ng test",
+    "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./src/assets",
     "build-storybook": "build-storybook"
   },
   "private": true,
@@ -49,7 +49,6 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-require-context-hook": "^1.0.0",
     "codelyzer": "~4.5.0",
-    "cross-env": "^5.2.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^23.6.0",
