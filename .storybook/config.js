@@ -1,4 +1,5 @@
 import { configure } from '@storybook/angular';
+import 'storybook-chromatic';
 
 // automatically import all files ending in *.stories.ts
 const req = require.context('../src/', true, /.stories.ts$/);
