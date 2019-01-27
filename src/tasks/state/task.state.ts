@@ -4,6 +4,8 @@ import { Task } from '../task.model';
 export const actions = {
   ARCHIVE_TASK: 'ARCHIVE_TASK',
   PIN_TASK: 'PIN_TASK',
+  ERROR: 'ERROR',
+  CLEAN_ERROR: 'CLEAN_ERROR',
 };
 
 export class ArchiveTask {
@@ -14,6 +16,12 @@ export class ArchiveTask {
 
 export class PinTask {
   static readonly type = actions.PIN_TASK;
+
+  constructor(public payload: string) {}
+}
+
+export class ErrorFromServer {
+  static readonly type = actions.ERROR;
 
   constructor(public payload: string) {}
 }
@@ -29,12 +37,14 @@ const defaultTasks = {
 
 export class TaskStateModel {
   entities: { [id: number]: Task };
+  error: string;
 }
 
 @State<TaskStateModel>({
   name: 'tasks',
   defaults: {
     entities: defaultTasks,
+    error: '',
   },
 })
 export class TasksState {
@@ -42,6 +52,21 @@ export class TasksState {
   static getAllTasks(state: TaskStateModel) {
     const entities = state.entities;
     return Object.keys(entities).map(id => entities[+id]);
+  }
+
+  @Selector()
+  static getError(state: TaskStateModel) {
+    return state.error;
+  }
+
+  @Action(ErrorFromServer)
+  error(
+    { patchState }: StateContext<TaskStateModel>,
+    { payload }: ErrorFromServer,
+  ) {
+    patchState({
+      error: payload,
+    });
   }
 
   @Action(PinTask)
