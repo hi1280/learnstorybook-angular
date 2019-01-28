@@ -32,15 +32,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'test-angular-storybook'`, () => {
+  it(`should have as title 'app'`, () => {
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('test-angular-storybook');
-  });
-
-  it('should render the first page component when the app loads', () => {
-    fixture.detectChanges();
-    const firstPage = fixture.debugElement.query(By.css('app-first-page'));
-    expect(firstPage.nativeElement.textContent).toContain('first-page works!');
+    expect(app.title).toEqual('app');
   });
 
 });
